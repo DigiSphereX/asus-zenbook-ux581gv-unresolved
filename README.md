@@ -12,17 +12,43 @@
 
 ---
 
-## ملخص بالعربية (Arabic summary)
+## Executive summary
 
-- الجهاز: **ASUS ZenBook Pro Duo UX581GV** (معالج Intel Core i7/i9 من الجيل التاسع، RTX 2060،
-  ScreenPad Plus، ويندوز 11 Pro).
-- المشكلة: شاشة موت زرقاء متكررة **KERNEL_SECURITY_CHECK_FAILURE (0x139)** تؤدي إلى
-  حلقة إقلاع لا تنتهي، حتى بعد إعادة تهيئة النظام عدة مرات.
-- الدليل الأهم: القرص NVMe عند عزله ووصلته بجهاز آخر يعمل **بنجاح** ويتم التحديث والإقلاع
-  بشكل طبيعي، لكنه يفشل فوراً عند إعادته إلى هذا الجهاز — أي أن الخلل في الجهاز/الفرموير وليس في القرص.
-- بالإضافة إلى: أداء ضعيف لكرت الشاشة RTX 2060، وارتعاش مستمر في الماوس، وبرامج ASUS
-  كثيرة تعمل في الخلفية وتستهلك الموارد، وASUS لم تُصدر أي تحديث BIOS منذ 2022 (تخلي عن الدعم).
-- الهدف: تجميع المستخدمين المتأثرين لعمل شكوى جماعية لـ ASUS. شارك عبر GitHub Issues.
+- **Premium hardware documented, then abandoned.** This flagship "Pro" creators laptop was
+  purchased new for **more than €2,500** — yet it is unstable on supported Windows builds and
+  its firmware has been **unmaintained since 2022**.
+- The machine repeatedly crashes to `KERNEL_SECURITY_CHECK_FAILURE (0x139)` blue screens
+  and never-ending boot loops, even after multiple clean reinstalls and up-to-date drivers.
+- **The smoking gun:** the **4 TB M.2 NVMe system drive** updates and boots perfectly in
+  another PC, and fails again within minutes of being returned to the UX581GV. The fault lives
+  in the *platform* (firmware/driver), not the user, the operating system, or the drive.
+- Secondary issues: a sluggish dedicated **RTX 2060** under multi-screen workloads, persistent
+  mouse stuttering, and a resident **ASUS bloatware stack** wasting CPU, RAM and bandwidth.
+- This repository is the **community hub** for ZenBook Pro Duo (UX581(GV)) owners to escalate
+  a **collective complaint** to ASUS and demand a firmware resolution.
+
+---
+
+## Device specifications
+
+| Component | Specification |
+|---|---|
+| Model | ASUS **ZenBook Pro Duo UX581GV** (2020 creators flagship) |
+| CPU | Intel Core i9-9980HK (configurable down to i7-9750H) — 8C/16T, 9th gen |
+| iGPU / dGPU | Intel UHD Graphics 630 / NVIDIA GeForce **RTX 2060**, 6 GB GDDR6 |
+| Memory | 32 GB DDR4-2666 (soldered, not upgradeable) |
+| Main display | 15.6" 4K UHD (3840 × 2160) IPS, multitouch + stylus |
+| ScreenPad Plus | 14" 4K (3840 × 1100) secondary touchscreen |
+| **Storage (system)** | **4 TB M.2 NVMe PCIe SSD** — user-installed, carries Windows 11 Pro |
+| Wireless | Intel Wi-Fi 6 (AX201) + Bluetooth 5.0 |
+| I/O | Thunderbolt 3 (USB-C), USB 3.2 Gen2 Type-A, HDMI 2.0, SD Express, 3.5 mm audio |
+| Battery / PSU | 71 Wh / 230 W |
+| OS | Windows 11 Pro (upgraded from Windows 10 Pro) |
+| Firmware | **Last BIOS/EC release 2022 — none since; effectively abandoned** |
+
+> ⚠️ The system cannot survive current Windows 11 Pro builds on this machine even with a
+> **4 TB M.2 NVMe** system drive proven healthy in isolation. Storage size is not the
+> variable — the platform is.
 
 ---
 
@@ -46,8 +72,8 @@ This is the most important clue we have:
 
 | Test | Result |
 |---|---|
-| System on the UX581GV, current Windows 11 build | **Crash (0x139), boot loop** |
-| The same NVMe drive alone in another machine | **Update + boot complete successfully** |
+| UX581GV host, current Windows 11 Pro build, **4 TB NVMe system drive** | **Crash (0x139), boot loop** |
+| The **same 4 TB NVMe drive** alone in another machine | **Update + boot complete successfully** |
 | The same drive returned to the UX581GV | **Fails again immediately** |
 
 A drive that is healthy enough to update and boot another PC does not die on return —
