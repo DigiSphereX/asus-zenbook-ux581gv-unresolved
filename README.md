@@ -95,7 +95,9 @@ the user, the OS install, or (most likely) the NVMe unit itself.
 
 ## Manufacturer status
 
-- **No BIOS update since 2022** for UX581GV. Premium hardware officially on the shelf.
+- **No BIOS since 2022.** A direct check of the official UX581GV support page shows the
+  newest BIOS is **still the 2022 build** — nothing new has been published since. Premium
+  hardware officially on the shelf.
 - No firmware fix for the `0x139` crash class, no public acknowledgement, no timeline.
 - Ticket-level support on ASUS forums produces generic advice only (reinstall, update
   drivers that are themselves outdated).
@@ -156,12 +158,62 @@ that is a measurable share of the resource contention.
 
 ---
 
-## Diagnostics performed so far
+## Troubleshooting performed
 
-- [x] Multiple **full formats + clean Windows 11 Pro installs** — crash persists on current builds.
-- [x] **NVMe isolation test** on a second machine — drive works; fails only in the ZenBook.
-- [x] Updated graphics/nvme/chipset drivers to newest available — no change.
-- [x] No vendor firmware fix available (last BIOS 2022).
+Every item below was actually done on this machine, in order. Together they rule out
+the OS, the storage, and the user; what remains is the platform itself.
+
+### 1. Initial hypothesis — Microsoft preview builds
+
+- The first working theory was that recent **Microsoft preview (Windows Insider / flighted)
+  builds** were corrupting the installation.
+- Chasing that theory involved **more than 5 full disk formats** over the machine's
+  history — the formatting sessions helped nothing.
+
+### 2. Storage is not the variable
+
+- Experiments were run on **multiple other NVMe drives**, all freshly formatted.
+- The **original 1 TB Samsung M.2 NVMe** drive shipped with the machine was reinstalled
+  and tested the same way.
+- **Result:** the `0x139` crash repeats **continuously on every storage medium** — the
+  4 TB aftermarket drive, the 1 TB OEM drive, and several other NVMe drives. Storage is
+  ruled **out**.
+
+### 3. The NVMe isolation experiment (decisive)
+
+| Test | Result |
+|---|---|
+| UX581GV host, current Windows 11 Pro build, 4 TB NVMe system drive | **Crash (0x139), boot loop** |
+| The same 4 TB NVMe drive alone in another machine | **Update + boot complete successfully** |
+| The same drive returned to the UX581GV | **Fails again immediately** |
+
+A drive healthy enough to update and boot another PC cannot "die on return" — unless the
+host platform (BIOS/EC firmware, ACPI/ATK driver stack, NVMe/firmware interplay) is what
+kills it. Size, brand and unit are irrelevant: **the platform is the fault.**
+
+### 4. ASUS's own diagnostics report no hardware fault
+
+- The **MyASUS System Diagnostics** tool was run (`Diagnostics → System check`).
+- **Result:** MyASUS reports **no hardware problem whatsoever** — while the machine keeps
+  crashing with `0x139`. Even ASUS's own tooling claims the hardware is fine and offers no
+  explanation for the boot loops.
+
+### 5. Firmware support check
+
+- The **official ASUS support page for UX581GV** was searched for a newer BIOS.
+- **Result:** the newest published BIOS is **still the 2022 release** — the very same
+  firmware version from years ago. No newer build, no EC updates, no fix for the crash class.
+
+### 6. Driver updates
+
+- Graphics (NVIDIA RTX 2060), chipset and storage drivers updated to the newest builds
+  available for the platform — **no change**.
+
+**Bottom line:** storage ruled out (multiple drives), OS ruled out (many fresh formats),
+hardware fault ruled out by ASUS's own diagnostics, and firmware ruled out of the chase
+altogether (never updated). The only remaining dependency is the **UX581GV platform
+itself** — its BIOS/EC firmware and its Windows 11 driver contracts, which ASUS refuses
+to maintain.
 
 ## Suspected root cause
 
