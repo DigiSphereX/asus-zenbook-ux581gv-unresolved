@@ -4,6 +4,7 @@
 ![Device](https://img.shields.io/badge/device-ASUS%20UX581GV-blue)
 ![OS](https://img.shields.io/badge/OS-Windows%2011%20Pro-informational)
 ![BIOS support](https://img.shields.io/badge/BIOS-support%20ended%202022-critical)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-0070BA)](https://www.paypal.com/donate/?hosted_button_id=CFANQH892RPH2)
 
 > Documenting a persistent, critical failure that ASUS has **not** fixed and shows no
 > sign of fixing. This repository is the community hub for owners of the ZenBook Pro Duo
