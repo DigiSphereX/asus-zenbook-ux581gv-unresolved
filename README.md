@@ -1,10 +1,12 @@
 # Unresolved System Instability & Hardware Neglect — ASUS ZenBook Pro Duo (UX581GV)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg?style=for-the-badge)](LICENSE)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-0070BA.svg?style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=CFANQH892RPH2)
+
 ![Status: Open](https://img.shields.io/badge/status-open-orange)
 ![Device](https://img.shields.io/badge/device-ASUS%20UX581GV-blue)
 ![OS](https://img.shields.io/badge/OS-Windows%2011%20Pro-informational)
 ![BIOS support](https://img.shields.io/badge/BIOS-support%20ended%202022-critical)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-0070BA)](https://www.paypal.com/donate/?hosted_button_id=CFANQH892RPH2)
 
 > Documenting a persistent, critical failure that ASUS has **not** fixed and shows no
 > sign of fixing. This repository is the community hub for owners of the ZenBook Pro Duo
@@ -261,6 +263,16 @@ diagnostic purposes; apply changes at your own risk.
 
 ## License
 
-The report and materials in this repository are provided under
-[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) (public domain) so the
-information can circulate freely in the fight for a fix.
+MIT — see [LICENSE](LICENSE).
+
+Copyright (c) 2026 M. Basheer (DigiSphereX)
+
+---
+
+## ☕ Support this project
+
+Free and open source (MIT). If this report saved you diagnostic time on your own
+machine, consider a small thank-you:
+
+- [GitHub Sponsors](https://github.com/sponsors/DigiSphereX)
+- [PayPal](https://www.paypal.com/donate/?hosted_button_id=CFANQH892RPH2)
